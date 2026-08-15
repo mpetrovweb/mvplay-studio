@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050816">
+  <title>MVPlay Studio — Small games. Big distractions.</title>
+  <meta name="description" content="MVPlay Studio creates satisfying mobile puzzle, casual and physics games built for one-more-level moments.">
+  <style>
+    :root{
+      --bg:#040711;--card:#09132a;--text:#f5f9ff;--muted:#9fb1cc;
+      --blue:#18bfff;--violet:#9a4dff;--border:rgba(83,154,255,.18);
+      --radius:24px;--max:1180px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%,rgba(0,153,255,.12),transparent 34%),
+        radial-gradient(circle at 82% 30%,rgba(138,61,255,.10),transparent 30%),
+        linear-gradient(180deg,#03050d 0%,#050b18 45%,#03050d 100%);
+    }
+    a{color:inherit} img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 36px),var(--max));margin:auto}
+    .hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:72px 0}
+    .hero-inner{width:min(760px,100%);margin:auto}
+    .studio-logo{width:min(340px,72vw);margin:0 auto 26px;border-radius:28px;filter:drop-shadow(0 0 28px rgba(0,153,255,.18))}
+    .eyebrow{margin:0 0 12px;text-transform:uppercase;letter-spacing:.23em;font-size:12px;font-weight:800;color:#83cfff}
+    h1{margin:0;font-size:clamp(42px,8vw,78px);line-height:.98;letter-spacing:-.045em}
+    .tagline{margin:18px 0 0;font-size:clamp(22px,4vw,34px);font-weight:800;background:linear-gradient(90deg,#fff,#79d8ff,#bc8cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{max-width:650px;margin:20px auto 0;color:var(--muted);line-height:1.7;font-size:17px}
+    .hero-actions,.store-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .btn,.store-button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 20px;border-radius:14px;text-decoration:none;font-weight:800;transition:.18s}
+    .btn:hover,.store-button:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(135deg,#0daeff,#426aff 65%,#7a47e8);box-shadow:0 12px 38px rgba(28,122,255,.28)}
+    .btn-secondary,.store-button{background:rgba(255,255,255,.04);border:1px solid var(--border)}
+    .section{padding:88px 0}
+    .section-heading{text-align:center;margin-bottom:42px}
+    .section-heading h2,.about-card h2{margin:0;font-size:clamp(34px,5vw,52px);letter-spacing:-.035em}
+    .section-heading p{max-width:620px;margin:14px auto 0;color:var(--muted);line-height:1.65}
+    .games{display:grid;gap:28px}
+    .game-card{display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden;border:1px solid var(--border);background:linear-gradient(135deg,rgba(11,25,53,.88),rgba(5,11,25,.90));border-radius:var(--radius);box-shadow:0 24px 80px rgba(0,25,80,.32);min-height:400px}
+    .game-card:nth-child(even) .game-media{order:2}
+    .game-media{min-height:400px;background:linear-gradient(135deg,rgba(22,132,255,.18),rgba(136,60,255,.14)),#0a1121}
+    .game-media img{width:100%;height:100%;min-height:400px;object-fit:cover}
+    .game-copy{padding:clamp(30px,5vw,58px);display:flex;flex-direction:column;justify-content:center}
+    .game-label{color:#75d2ff;text-transform:uppercase;font-weight:800;font-size:12px;letter-spacing:.2em;margin-bottom:12px}
+    .game-copy h3{margin:0;font-size:clamp(32px,5vw,48px);letter-spacing:-.035em}
+    .game-copy p,.about-card p{color:var(--muted);line-height:1.7;font-size:16px}
+    .store-buttons{justify-content:flex-start;margin-top:26px}
+    .store-button.disabled{opacity:.45;pointer-events:none}
+    .about-card{border:1px solid var(--border);background:linear-gradient(135deg,rgba(9,25,55,.84),rgba(9,12,28,.88));border-radius:var(--radius);padding:clamp(34px,7vw,72px);text-align:center}
+    .about-card p{max-width:720px;margin:20px auto 0;font-size:17px}
+    .social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+    .social-link{min-height:82px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;text-decoration:none;background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:16px;font-weight:800}
+    .social-link span{font-size:12px;font-weight:600;color:var(--muted)}
+    footer{padding:32px 0 42px;text-align:center;color:#71839e;font-size:13px}
+    .footer-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+    .footer-links a{text-decoration:none;color:#9bb0cb}
+    @media(max-width:800px){
+      .hero{min-height:auto;padding:60px 0 90px}
+      .game-card{grid-template-columns:1fr}
+      .game-card:nth-child(even) .game-media{order:0}
+      .game-media,.game-media img{min-height:280px}
+      .social-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:520px){
+      .container{width:min(calc(100% - 24px),var(--max))}
+      .hero-actions,.store-buttons{flex-direction:column}
+      .btn,.store-button{width:100%}
+      .section{padding:66px 0}
+      .game-media,.game-media img{min-height:230px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-inner">
+      <!-- Put logo.png in the same folder as index.html -->
+      <img class="studio-logo" src="assets/logo.png" alt="MVPlay Studio">
+      <p class="eyebrow">Mobile Game Studio</p>
+      <h1>MVPlay Studio</h1>
+      <p class="tagline">Small games. Big distractions.</p>
+      <p class="hero-copy">Mobile games built around simple ideas, satisfying mechanics, and that dangerous “one more level” feeling.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#games">Explore our games ↓</a>
+        <a class="btn btn-secondary" href="https://www.tiktok.com/@mvplaystudio" target="_blank" rel="noopener">Follow on TikTok</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="games">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our Games</p>
+          <h2>Pick your next distraction.</h2>
+          <p>Puzzles, physics and satisfying casual gameplay designed to be easy to start and difficult to put down.</p>
+        </div>
+
+        <div class="games">
+          <article class="game-card">
+            <div class="game-media"><img src="assets/stellar-sort.png" alt="Stellar Sort gameplay"></div>
+            <div class="game-copy">
+              <div class="game-label">Space Puzzle</div>
+              <h3>Stellar Sort</h3>
+              <p>Sort colorful planets, solve increasingly tricky puzzles, and master special mechanics like the Black Hole.</p>
+              <div class="store-buttons">
+                <!-- Replace # with live URLs -->
+                <a class="store-button" href="https://play.google.com/store/apps/details?id=com.mpgstudio.stellarsort" target="_blank" rel="noopener"> App Store</a>
+                <a class="store-button" href="https://apps.apple.com/us/app/stellar-sort-planet-puzzle/id6782845826" target="_blank" rel="noopener">▶ Google Play</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <div class="game-media"><img src="assets/pileup.png" alt="Pile Up gameplay"></div>
+            <div class="game-copy">
+              <div class="game-label">Physics Challenge</div>
+              <h3>Pile Up</h3>
+              <p>Stack objects, balance impossible structures, and survive increasingly unpredictable physics challenges.</p>
+              <div class="store-buttons">
+                <a class="store-button" href="https://apps.apple.com/us/app/pile-up-stacking-game/id6786707942" target="_blank" rel="noopener"> App Store</a>
+                <a class="store-button" href="https://play.google.com/store/apps/details?id=com.mpgstudio.pileup" target="_blank" rel="noopener">▶ Google Play</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <div class="game-media"><img src="assets/bramble.png" alt="Bramble fruit puzzle gameplay"></div>
+            <div class="game-copy">
+              <div class="game-label">Fruit Puzzle</div>
+              <h3>Bramble</h3>
+              <p>Drop fruit shapes, match four or more, and trigger satisfying chain reactions and cascades.</p>
+              <div class="store-buttons">
+                <span class="store-button disabled"> App Store — Coming Soon</span>
+                <span class="store-button disabled">▶ Google Play — Coming Soon</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="about-card">
+          <p class="eyebrow">About MVPlay</p>
+          <h2>Games made for “just one more.”</h2>
+          <p>MVPlay Studio creates approachable mobile games with simple rules, satisfying interactions and plenty of room to master them. From puzzle solving to physics challenges, every game starts with one goal: make playing immediately fun.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="social">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Follow MVPlay</p>
+          <h2>See what we're playing with next.</h2>
+        </div>
+        <div class="social-grid">
+          <a class="social-link" href="https://www.tiktok.com/@mvplaystudio" target="_blank" rel="noopener">TikTok<span>@mvplaystudio</span></a>
+          <a class="social-link" href="https://www.instagram.com/mvplay.studio/" target="_blank" rel="noopener">Instagram<span>@mvplay.studio</span></a>
+          <a class="social-link" href="https://www.youtube.com/channel/UCdZ8i1TnKgELzYXh1fn48Og" target="_blank" rel="noopener">YouTube<span>MVPlay Studio</span></a>
+          <a class="social-link" href="https://www.facebook.com/profile.php?id=61593100871334" target="_blank" rel="noopener">Facebook<span>MVPlay Studio</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Support</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>© 2026 MVPlay Studio · Small games. Big distractions.</div>
+    </div>
+  </footer>
+</body>
+</html>
